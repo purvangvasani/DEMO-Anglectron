@@ -1,13 +1,47 @@
 {
   "name": "anglectron",
   "version": "0.0.0",
+  "main": "main.js",
+  "author": "purvang vasani <purvangvasani4@gmail.com>",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "electron": "electron .",
+    "electron-build": "ng build --prod && electron .",
+    "pack": "build --dir",
+    "dist": "ng build && electron-builder"
+  },
+  "build": {
+    "appId": "anglectron",
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "category": "Graphics",
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "squirrel",
+      "icon": "build/icon.ico"
+    }
   },
   "private": true,
   "dependencies": {
@@ -16,12 +50,33 @@
     "@angular/compiler": "~7.2.0",
     "@angular/core": "~7.2.0",
     "@angular/forms": "~7.2.0",
+    "@angular/http": "^7.2.15",
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
-    "core-js": "^2.5.4",
+    "@types/socket.io": "^2.1.4",
+    "buffer": "^5.4.3",
+    "concat-stream": "^2.0.0",
+    "core-js": "^2.6.11",
+    "crypto-js": "^3.1.9-1",
+    "easy-soap-request": "^3.2.0",
+    "events": "^3.0.0",
+    "express": "^4.17.1",
+    "helmet": "^3.12.1",
+    "lodash": "^4.17.15",
+    "ngx-soap": "^0.6.0",
+    "node-static": "^0.7.11",
+    "request": "^2.87.0",
     "rxjs": "~6.3.3",
+    "sax": "^1.2.4",
+    "soap": "^0.30.0",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0",
+    "stream": "0.0.2",
     "tslib": "^1.9.0",
+    "uuid": "^3.3.3",
+    "ws": "^5.2.0",
+    "wsse": "^2.4.0",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
@@ -29,10 +84,12 @@
     "@angular/cli": "~7.3.9",
     "@angular/compiler-cli": "~7.2.0",
     "@angular/language-service": "~7.2.0",
-    "@types/node": "~8.9.4",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "^8.10.59",
     "codelyzer": "~4.5.0",
+    "electron": "^7.1.7",
+    "electron-builder": "^21.2.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.0.0",
